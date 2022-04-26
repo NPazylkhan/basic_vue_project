@@ -1,0 +1,145 @@
+<template>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1>Sign up</h1>
+                <p>Please fill in this form to create an account.</p>
+                <hr>
+
+                <label for="userName">Username</label>
+                <input v-model="user.userName" ref="userName" type="text" placeholder="Enter Username" name="userName" />
+
+                <label for="email">Email</label>
+                <input v-model="user.email" ref="email" type="text" placeholder="Enter Email" name="email" />
+                
+                <label for="password">Password</label>
+                <input v-model="user.password" ref="password" type="password" placeholder="Enter Password" name="password" />
+                
+                <label for="password-repeat">Repeat Password</label>
+                <input v-model="user.repeatPassword" ref="password-repeat" type="password" placeholder="Enter Repeat Password" name="password-repeat" />
+
+                <label>
+                    <input type="checbox" checked="checked" name="remember" style="margin-bottom:15px" /> Remember me
+                </label>
+
+                <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
+
+                <div class="clearfix">
+                    <button type="button" class="cancelbtn" @click="back">Cancel</button>
+                    <button type="button" class="signupbtn" @click="signup">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import axios from 'axios';
+import Swal from 'sweetalert2';
+
+export default ({
+    data(){
+        return{
+            user:{
+                userId:0,
+                userName:"",
+                email:"",
+                password:"",
+                repeatPassword:""
+            }
+        }
+    },
+     methods:{
+        back(){
+            this.$router.push({name:'Login'});
+        },
+        signup(){
+            if(this.checkValidation()){
+                axios.post(this.hostname + "/api/user/registration", this.user)
+                    .then(response=>{
+                        if(response.data.userId>0){
+                            Swal.fire("Successfully registrated")
+                            .then(()=>{
+                                this.back();
+                            });
+                        }
+                        else{
+                            Swal.fire("Error : Something went wrong.");
+                        }
+                    })
+                    .catch(error=>{
+                        if(error.response){
+                            Swal.fire(error.response.data);
+                        }
+                    })
+            }
+
+        },
+        checkValidation(){
+            if(!this.user.userName){
+                this.$refs.userName.focus();
+                Swal.fire("Give username");
+                return;
+            }
+            if(!this.user.email){
+                this.$refs.email.focus();
+                Swal.fire("Give email");
+                return;
+            }
+            if(!(/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/).test(this.user.email)){
+                this.$refs.email.focus();
+                Swal.fire("Invalid email");
+                return;
+            }
+            if(!this.user.password){
+                this.$refs.password.focus();
+                Swal.fire("Give password");
+                return;
+            }
+            if(this.user.password!=this.user.repeatPassword){
+                this.$refs.password.focus();
+                Swal.fire("Password and repeat password mismatched!");
+                return;
+            }
+            return true;
+        }
+    }
+})
+</script>
+
+<style scoped>
+    .container{
+        width: 40%;
+        padding: 16px;
+    }
+
+    input[type=text],input[type=password],input[type=email]{
+        width:100%;
+        padding:15px;
+        margin:5px 0 22px 0;
+        display:inline-block;
+        border:none;
+        background:#f1f1f1;
+    }
+    input[type=text]:focus,input[type=password]:focus,input[type=email]:focus{
+        background-color:#ddd;
+        outline:none;
+    }
+    hr{
+        border: 1px solid #f1f1f1;
+        margin-bottom:25px;
+    }
+    button{
+        background-color:#04AA6D;
+        color:white;
+        padding:14px 20px;
+        margin: 8px 0;
+        border:none;
+        cursor:pointer;
+        width:100%;
+        opacity:0.9;        
+    }
+    button:hover{
+        opacity:1;
+    }
+</style>
