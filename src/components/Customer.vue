@@ -20,7 +20,7 @@ import Swal from 'sweetalert2';
 
 export default {
   components: { Layout },
-  date() {
+  data() {
     return {
       customer: {
         customerId: 0,
@@ -36,7 +36,6 @@ export default {
   methods: {
     async getCustomer() {
       var customerId = this.$route.params.id;
-      alert("i am here")
       await axios
         .get(
           this.hostname + "/api/customer/GetByCustomerId/" + customerId,

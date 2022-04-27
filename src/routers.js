@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 
+//lazy-loaded
 const Dashboard = () => import("./components/Dashboard.vue")
 const Customer = () => import("./components/Customer.vue")
 const NotFound = () => import("./components/404.vue")

@@ -2,26 +2,26 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h1>Sign up</h1>
+                <h1>Sign Up</h1>
                 <p>Please fill in this form to create an account.</p>
                 <hr>
 
-                <label for="userName">Username</label>
+                <label for="userName"><b>Username</b></label>
                 <input v-model="user.userName" ref="userName" type="text" placeholder="Enter Username" name="userName" />
 
-                <label for="email">Email</label>
+                <label for="email"><b>Email</b></label>
                 <input v-model="user.email" ref="email" type="text" placeholder="Enter Email" name="email" />
                 
-                <label for="password">Password</label>
+                <label for="psw"><b>Password</b></label>
                 <input v-model="user.password" ref="password" type="password" placeholder="Enter Password" name="password" />
                 
-                <label for="password-repeat">Repeat Password</label>
+                <label for="psw-repeat"><b>Repeat Password</b></label>
                 <input v-model="user.repeatPassword" ref="password-repeat" type="password" placeholder="Enter Repeat Password" name="password-repeat" />
 
                 <label>
-                    <input type="checbox" checked="checked" name="remember" style="margin-bottom:15px" /> Remember me
+                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
                 </label>
-
+    
                 <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
                 <div class="clearfix">
@@ -108,38 +108,73 @@ export default ({
 </script>
 
 <style scoped>
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box}
+
     .container{
         width: 40%;
         padding: 16px;
+        text-align: left;
     }
 
     input[type=text],input[type=password],input[type=email]{
-        width:100%;
-        padding:15px;
-        margin:5px 0 22px 0;
-        display:inline-block;
-        border:none;
-        background:#f1f1f1;
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
     }
     input[type=text]:focus,input[type=password]:focus,input[type=email]:focus{
-        background-color:#ddd;
-        outline:none;
+        background-color: #ddd;
+        outline: none;
     }
     hr{
         border: 1px solid #f1f1f1;
         margin-bottom:25px;
     }
     button{
-        background-color:#04AA6D;
-        color:white;
-        padding:14px 20px;
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
         margin: 8px 0;
-        border:none;
-        cursor:pointer;
-        width:100%;
-        opacity:0.9;        
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;        
     }
     button:hover{
         opacity:1;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn, .signupbtn {
+        float: left;
+        width: 50%;
+    }
+
+    /* Add padding to container elements */
+    .container {
+        padding: 16px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+        .cancelbtn, .signupbtn {
+            width: 100%;
+        }
     }
 </style>

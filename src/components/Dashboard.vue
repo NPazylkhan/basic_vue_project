@@ -1,8 +1,9 @@
 <template>
-    <Layout title="Dashboard"></Layout>
-    <br/>
-    <button class="my-button" @click="addCustomer" style="margin: 10px 0 10px 0;">Create</button>
-    <table>
+    <div style="display:flex;justify-content:flex-end;margin-right:10px;">
+        <button class="btn btn-primary m-2 fload-end" @click="addCustomer" style="margin: 10px 0 10px 0;float:right;">Create</button>
+        <Layout title="Dashboard"></Layout>
+    </div>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Name</th>
@@ -13,10 +14,10 @@
         <tbody>
             <tr v-for="item in customers" :key="item.customerId">
                 <td>{{item.customerName}}</td>
-                <td>{{item.Role}}</td>
+                <td>{{item.role}}</td>
                 <td>
-                    <button class="my-button" @click="editCustomer(item.customerId)" style="float:left;">Edit</button>
-                    <button class="my-button" @click="deleteCustomer(item.customerId)" style="float:left;">Delete</button>
+                    <button class="btn btn-primary" @click="editCustomer(item.customerId)" style="float:center; margin-right:2px">Edit</button>
+                    <button class="btn btn-primary" @click="deleteCustomer(item.customerId)" style="float:center;">Delete</button>
                 </td>
             </tr>
         </tbody>

@@ -1,21 +1,13 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <Register/>
-  <Login/>
-  <Dashboard/>
+  <!-- <img alt="Vue logo" src="./assets/logo.png" width="100" height="100"> -->
+  <RouterView />
 </template>
 
 <script>
-import Register from './components/Register.vue'
-import Login from './components/Login.vue'
-import Dashboard from './components/Dashboard.vue'
 
 export default {
   name: 'App',
   components: {
-    Register,
-    Login,
-    Dashboard
   }
 }
 </script>

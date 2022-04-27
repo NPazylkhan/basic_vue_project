@@ -1,5 +1,6 @@
 <template>
-    <button @click="logout">Logout</button>
+    <!-- <h5>{{title}}</h5> -->
+    <button class="btn btn-secondary" @click="logout"><i class="fa fa-sign-out"></i></button>
 </template>
 
 <script>

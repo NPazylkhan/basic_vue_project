@@ -1,15 +1,15 @@
 <template>
-    <div class="col-md-12">
         <div class="container">
-            <h3 class="e-shop-font">Login Page</h3>
             <div class="card">
                 <div class="card-body">
+            <h2>Sign In</h2>
+                <div class="card-body">
                     <div class="form-group">
-                        <label for="userName">Username:</label>
+                        <label for="userName"><b>Username</b></label>
                         <input v-model="user.userName" ref="userName" type="text" class="form-control" placeholder="Enter username" name="userName" />
                     </div>
                     <div class="form-group">
-                        <label for="password">Password:</label>
+                        <label for="password"><b>Password</b></label>
                         <input v-model="user.password" ref="password" type="password" class="form-control" placeholder="Enter password" name="password" />
                     </div>
                     <div class="form-group form-check">
@@ -23,8 +23,8 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>    
-    </div>    
 </template>
 
 <script>
@@ -82,20 +82,72 @@ export default ({
 
 <style scoped>
     .container{
-        max-width: 360px;
+        width: 25%;
+        padding: 16px;
+        text-align: left;
     }
 
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box}
+
+    input[type=text],input[type=password],input[type=email]{
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+    input[type=text]:focus,input[type=password]:focus,input[type=email]:focus{
+        background-color: #ddd;
+        outline: none;
+    }
+    hr{
+        border: 1px solid #f1f1f1;
+        margin-bottom:25px;
+    }
     button{
-        background-color:red;
-        color:white;
-        padding:14px 20px;
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
         margin: 8px 0;
-        border:none;
-        cursor:pointer;
-        width:100%;
-        opacity:0.9;        
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;        
     }
     button:hover{
         opacity:1;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn, .signupbtn {
+        float: left;
+        width: 50%;
+    }
+
+    /* Add padding to container elements */
+    .container {
+        padding: 16px;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+        .cancelbtn, .signupbtn {
+            width: 100%;
+        }
     }
 </style>
