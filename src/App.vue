@@ -2,17 +2,20 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <Register/>
   <Login/>
+  <Dashboard/>
 </template>
 
 <script>
 import Register from './components/Register.vue'
 import Login from './components/Login.vue'
+import Dashboard from './components/Dashboard.vue'
 
 export default {
   name: 'App',
   components: {
     Register,
-    Login
+    Login,
+    Dashboard
   }
 }
 </script>

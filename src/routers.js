@@ -3,6 +3,7 @@ import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 
 const Dashboard = () => import("./components/Dashboard.vue")
+const Customer = () => import("./components/Customer.vue")
 const NotFound = () => import("./components/404.vue")
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
         path:"/dashboard",
         name:"Dashboard",
         component:Dashboard,
+    },
+    {
+        path:"/customer/:id",
+        name:"Customer",
+        component:Customer,
     },
     {
         path:"/404",
