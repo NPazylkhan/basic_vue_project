@@ -18,8 +18,8 @@
                         </label>
                     </div>
                     <div class="clearfix">
-                        <button type="button" class="signin" @click="login">Sign in</button>
-                        <button type="button" class="signup" @click="signup">Sign up</button>
+                        <button type="button" class="button buttonGreen signin" @click="login">Sign in</button>
+                        <button type="button" class="button buttonGreen signup" @click="signup">Sign up</button>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@ export default ({
                         if(response.data.userId>0){
                             localStorage.setItem('token', JSON.stringify(response.data.token));
                             response.data.token = "";
-                            localStorage.setItem('user', JSON.stringify(response.data));
+                            //localStorage.setItem('user', JSON.stringify(response.data));
                             this.$router.push({name:"Dashboard"});
                         }
                     })
@@ -116,25 +116,28 @@ export default ({
         width: 100%;
         opacity: 0.9;        
     }
-    button:hover{
-        opacity:1;
+    
+    .buttonGreen {
+        background-color: #04AA6D; 
+        color: white; 
+        border: 2px solid white;
+    }
+
+    .buttonGreen:hover {
+        background-color: white;
+        color: #04AA6D;
+        border: 2px solid #04AA6D;
     }
 
     /* Extra styles for the cancel button */
-    .cancelbtn {
+    .signin {
         padding: 14px 20px;
-        background-color: #f44336;
     }
 
     /* Float cancel and signup buttons and add an equal width */
-    .cancelbtn, .signupbtn {
+    .signup, .signin {
         float: left;
         width: 50%;
-    }
-
-    /* Add padding to container elements */
-    .container {
-        padding: 16px;
     }
 
     /* Clear floats */

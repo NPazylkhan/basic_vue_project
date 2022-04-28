@@ -143,14 +143,21 @@ export default ({
         width: 100%;
         opacity: 0.9;        
     }
-    button:hover{
-        opacity:1;
-    }
-
     /* Extra styles for the cancel button */
     .cancelbtn {
         padding: 14px 20px;
         background-color: #f44336;
+        border: 2px solid white;
+    }
+    .signupbtn {
+        padding: 14px 20px;
+        background-color: #04AA6D;
+        border: 2px solid white;
+    }
+    .cancelbtn:hover {
+        background-color: white;
+        color: #04AA6D;
+        border: 2px solid #f44336;
     }
 
     /* Float cancel and signup buttons and add an equal width */
@@ -158,7 +165,12 @@ export default ({
         float: left;
         width: 50%;
     }
-
+    
+    .signupbtn:hover {
+        background-color: white;
+        color: #04AA6D;
+        border: 2px solid #04AA6D;
+    }
     /* Add padding to container elements */
     .container {
         padding: 16px;
