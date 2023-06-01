@@ -2,14 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from './components/Login.vue'
 import Register from './components/Register.vue'
 
-//lazy-loaded
+//lazyloaded
 const Dashboard = () => import("./components/Dashboard.vue")
 const Customer = () => import("./components/Customer.vue")
 const NotFound = () => import("./components/404.vue")
 
 const routes = [
     {
-        path:"/",
+        path:"/login",
         alias:['/login'],
         name:"Login",
         component:Login,
@@ -20,7 +20,7 @@ const routes = [
         component:Register,
     },
     {
-        path:"/dashboard",
+        path:"/",
         name:"Dashboard",
         component:Dashboard,
     },

@@ -3,7 +3,7 @@
   <br />
     <label for="upload-pic" class="imgLabel">
         <img class="rounded-circle mt-5 imgTag" style="width:100%;height:100%;" v-bind:src="fileSrc">
-        <input type="file" id="upload-pic" @change="uploadImage($event)" class="upload-pic" accept="image/*" name="photo" style="display:none;">
+        <input type="file" id="upload-pic" @change="uploadImage($event)" class="upload-pic" accept="image/*" name="Files" style="display:none;">
     </label>
   <br />
   <input v-model="customer.customerName" ref="customerName" type="text" placeholder="Customer name"/>
@@ -21,12 +21,13 @@ import Swal from 'sweetalert2';
 export default {
     data() {
         return {
+            files:'',
             customer: {
                 file:'',
                 fileSrc:require('@/assets/anonymous.png'),
                 customerId: 0,
                 customerName: "",
-                role: ""
+                role: "",
             },
         };
     },
@@ -68,14 +69,7 @@ export default {
     },
     save() {
       if (this.checkValidation()) {
-          var formData = new FormData();
-          console.log(this.customer)
-          for(var key in this.customer){
-              formData.append(key,this.customer[key]);
-          }
-          formData.append("Files", this.file);
-          
-        axios.post(this.hostname + "/api/customer/save", formData, this.getTokenConfig())
+        axios.post(this.hostname + "/api/customer/save", this.customer, this.getTokenConfig())
             .then((response) => {
                 if (response.data.customerId > 0) {
                     Swal.fire("Successfully saved")
@@ -93,8 +87,22 @@ export default {
       }
     },
     uploadImage(e){
-        this.file = e.target.files[0];
-        this.fileSrc = window.URL.createObjectURL(this.file);
+        this.customer.file = e.target.files[0];
+        this.fileSrc = window.URL.createObjectURL(e.target.files[0]);
+
+        let formData = new FormData();
+            formData.append('files', e.target.files[0]);
+
+        axios.post(this.hostname + "/api/customer/AddFile", formData, this.getTokenConfig(),{
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+           .then(response => {
+                    alert(`Total Mock File Uploaded: ${response.data}`);
+                }).catch(error => {
+                    alert(`something went wrong: ${error}`);
+                });
     },
     checkValidation() {
       if (!this.customer.customerName) {
